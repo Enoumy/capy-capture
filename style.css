@@ -1,10 +1,11 @@
 html {
   background-color: #ffde3e;
+  font-family: "Verdana", sans-serif;
 }
 
 .vbox {
-    display: flex;
-    direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
