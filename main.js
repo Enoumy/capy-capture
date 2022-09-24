@@ -5,7 +5,6 @@ const displayMediaOptions = {
     audio: false
 }
 
-
 startElement.addEventListener("click", (_) => {
         console.log("starting capture");
         startCapture();
@@ -27,7 +26,7 @@ async function startCapture() {
 
     const chunks = [];
     recorder.ondataavailable = e => chunks.push(e.data);
-    recorder.onstop = e => {
+    recorder.onstop = _ => {
         const blob = new Blob(chunks, {type : chunks[0].type});
         console.log(blob);
         stream.getVideoTracks()[0].stop();
