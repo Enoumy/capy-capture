@@ -1,21 +1,6 @@
-const startButton = document.getElementById("start");
-const stopButton = document.getElementById("stop");
-
 const displayMediaOptions = {
   audio: false,
 };
-
-startButton.addEventListener(
-  "click",
-  startCapture,
-  false
-);
-
-stopButton.addEventListener(
-  "click",
-  stopCapture,
-  false
-);
 
 var outerRecorder = null;
 
@@ -48,8 +33,12 @@ async function startCapture() {
 }
 
 function stopCapture() {
-  console.log("Stopping recording!")
+  console.log("Stopping recording!");
   outerRecorder.stop();
 }
 
-console.log("End of transmission. Don't panic!");
+const startButton = document.getElementById("start");
+const stopButton = document.getElementById("stop");
+startButton.addEventListener("click", startCapture, false);
+stopButton.addEventListener("click", stopCapture, false);
+
