@@ -15,3 +15,5 @@ echo "DONE"
 echo "Copying over html; couldn't figure out how to minify it easily + not that big anyways."
 cp ./index.html ./static/index.html
 
+cp ./capybara.png ./static/capybara.png
+
