@@ -1,7 +1,7 @@
 # CapyCapture
 
-[](capybara.png)
+[](./capybara.png)
 
 Start Capture
 
-[](demo.mp4)
+[](./demo.mp4)
