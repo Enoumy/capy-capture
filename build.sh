@@ -12,6 +12,6 @@ mv ./static/style.min.css ./static/style.css
 echo "DONE"
 
 
-echo "Moving over html; couldn't figure out how to minify it easily + not that big anyways"
-mv ./index.html ./static/index.html
+echo "Copying over html; couldn't figure out how to minify it easily + not that big anyways."
+cp ./index.html ./static/index.html
 
