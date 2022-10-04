@@ -28,10 +28,14 @@ html {
 }
 
 button {
-  color: white;
   background-color: #00a0ff;
   border: none;
   border-radius: 4px;
+  color: #fff;
   cursor: pointer;
+  height: 50px;
   padding: 8px;
+  width: 184px;
+  font-weight: 700;
+  font-size: medium;
 }
