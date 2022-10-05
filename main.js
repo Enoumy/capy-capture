@@ -24,7 +24,6 @@ const displayMediaOptions = {
 var globalRecorder = null;
 
 async function startCapture() {
-  await navigator.mediaDevices.getUserMedia({video: true});
   const stream = await navigator.mediaDevices.getDisplayMedia(
     displayMediaOptions
   );
