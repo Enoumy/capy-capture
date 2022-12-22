@@ -56,9 +56,12 @@ async function startCapture() {
 
   const chunks = [];
   recorder.ondataavailable = (e) => chunks.push(e.data);
-  recorder.onstop = (_) => {
+  function stop() {
     const blob = new Blob(chunks, { type: chunks[0].type });
     stream.getVideoTracks()[0].stop();
+    if (stream.getAudioTracks().length > 0) {
+      stream.getAudioTracks()[0].stop();
+    }
     let filename = "output.mp4";
     if (window.navigator.msSaveOrOpenBlob) {
       window.navigator.msSaveBlob(blob, filename);
@@ -72,6 +75,15 @@ async function startCapture() {
     }
     buttonsWrapper.classList.toggle("stopped");
     setFavicon("📷");
+    globalRecorder = null;
+  }
+  recorder.onstop = (_) => {
+    stop();
+  };
+  stream.getVideoTracks()[0].onended = () => {
+    if (recorder.state === "recording") {
+      recorder.stop();
+    }
   };
 
   globalRecorder = recorder;
@@ -81,7 +93,6 @@ async function startCapture() {
 }
 
 function stopCapture() {
-  console.log("Stopping recording!");
   if (globalRecorder) {
     globalRecorder.stop();
   }
