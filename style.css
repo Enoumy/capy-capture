@@ -27,6 +27,13 @@ html {
   background-color: #ff6a00;
 }
 
+#buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
 button {
   background-color: #00a0ff;
   border: none;

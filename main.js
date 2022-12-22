@@ -13,6 +13,20 @@ function setFavicon(c) {
   favicon.setAttribute("href", createFavicon(c));
 }
 
+
+let mediaConstraints = {
+  audio: {
+    echoCancellation: true,
+    noiseSuppression: true,
+    sampleRate: 44100
+  }
+}
+
+async function captureMicrophone() {
+  const stream = await navigator.mediaDevices.getUserMedia(mediaConstraints)
+  return stream
+}
+
 const buttonsWrapper = document.getElementById("buttons");
 buttonsWrapper.classList.toggle("stopped");
 setFavicon("📷");
@@ -22,11 +36,22 @@ const displayMediaOptions = {
 };
 
 var globalRecorder = null;
+var shouldRecordMicrophone = false;
 
 async function startCapture() {
-  const stream = await navigator.mediaDevices.getDisplayMedia(
+  const shouldRecordMicrophone = document.querySelector('#capture-microphone').checked;
+  const screenStream = await navigator.mediaDevices.getDisplayMedia(
     displayMediaOptions
   );
+
+  var stream;
+  if (shouldRecordMicrophone) {
+    const microphoneStream = await captureMicrophone();
+    stream = new MediaStream([...screenStream.getTracks(), ...microphoneStream.getTracks()]);
+  } else {
+    stream = screenStream;
+  }
+
   const recorder = new MediaRecorder(stream);
 
   const chunks = [];
@@ -66,3 +91,6 @@ const startButton = document.getElementById("start");
 const stopButton = document.getElementById("stop");
 startButton.addEventListener("click", startCapture, false);
 stopButton.addEventListener("click", stopCapture, false);
+
+
+
