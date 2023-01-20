@@ -88,7 +88,7 @@ async function startCapture() {
 
   globalRecorder = recorder;
   buttonsWrapper.classList.toggle("stopped");
-  recorder.start();
+  recorder.start(100);
   setFavicon("🔴");
 }
 
