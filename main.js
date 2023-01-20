@@ -55,8 +55,13 @@ async function startCapture() {
   const recorder = new MediaRecorder(stream);
 
   const chunks = [];
-  recorder.ondataavailable = (e) => chunks.push(e.data);
+  let i = 0;
+  recorder.ondataavailable = (e) => {
+    console.log("chunk!", ++i);
+    chunks.push(e.data);
+  };
   function stop() {
+    console.log("stop", {actual_chunks : chunks.length, expected_chunks : i});
     const blob = new Blob(chunks, { type: chunks[0].type });
     stream.getVideoTracks()[0].stop();
     if (stream.getAudioTracks().length > 0) {
