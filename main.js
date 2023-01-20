@@ -57,11 +57,11 @@ async function startCapture() {
   const chunks = [];
   let i = 0;
   recorder.ondataavailable = (e) => {
-    console.log("chunk!", ++i);
+    console.debug("chunk!", ++i);
     chunks.push(e.data);
   };
   function stop() {
-    console.log("stop", {actual_chunks : chunks.length, expected_chunks : i});
+    console.debug("stop", {actual_chunks : chunks.length, expected_chunks : i});
     const blob = new Blob(chunks, { type: chunks[0].type });
     stream.getVideoTracks()[0].stop();
     if (stream.getAudioTracks().length > 0) {
